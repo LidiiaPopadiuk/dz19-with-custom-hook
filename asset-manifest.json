@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dz14-search-img/static/css/main.34c73bb0.css",
+    "main.js": "/dz14-search-img/static/js/main.0db21cf8.js",
+    "index.html": "/dz14-search-img/index.html",
+    "main.34c73bb0.css.map": "/dz14-search-img/static/css/main.34c73bb0.css.map",
+    "main.0db21cf8.js.map": "/dz14-search-img/static/js/main.0db21cf8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.34c73bb0.css",
+    "static/js/main.0db21cf8.js"
+  ]
+}
