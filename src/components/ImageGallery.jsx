@@ -1,6 +1,7 @@
 import '../styles.css'
 import { ImageGalleryItem } from './ImageGalleryItem'
-export const ImageGallery = ({ stateInfo, onImageClick }) => {
+import { memo } from 'react'
+export const ImageGallery = memo(({ stateInfo, onImageClick }) => {
     return (
         <ul className="ImageGallery">
             {stateInfo.map(info => {
@@ -9,4 +10,4 @@ export const ImageGallery = ({ stateInfo, onImageClick }) => {
             })}
         </ul>
     )
-}
+});

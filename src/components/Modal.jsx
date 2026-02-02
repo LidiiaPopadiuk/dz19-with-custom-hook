@@ -22,9 +22,6 @@ export const Modal = ({ modalInfo, onclose }) => {
         <div onClick={onclose} class="Overlay">
             <div class="Modal">
                 <img src={modalInfo} alt="modal" />
-                {/* <span className="span" onClick={onclose}>
-                    <IoCloseCircleSharp />
-                </span> */}
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import "./styles.css";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Searchbar } from "./components/Searchbar";
 import { Modal } from "./components/Modal";
 import { ImageGallery } from "./components/ImageGallery";
@@ -16,29 +16,29 @@ function App() {
   const [isSelected, setIsSelected] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const openModal = (imgUrl) => {
+  const openModal = useCallback((imgUrl) => {
     setIsOpen(true);
     setIsSelected(imgUrl);
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsOpen(false);
     setIsSelected(null);
-  };
+  }, []);
 
-  const infoInput = (value) => {
+  const infoInput = useCallback((value) => {
     setSearchName(value);
     setPage(1);
     setImg([]);
-    console.log(value); // інформація з інпуту
-  };
+    console.log(value);
+  }, []);
 
-  const API = `https://pixabay.com/api/?q=${searchName}&page=${page}&key=53835167-c7d1482498fed66d7f39b6868&image_type=photo&orientation=horizontal&per_page=12`;
+  const API = useMemo(() => {
+    return `https://pixabay.com/api/?q=${searchName}&page=${page}&key=53835167-c7d1482498fed66d7f39b6868&image_type=photo&orientation=horizontal&per_page=12`;
+  }, [searchName, page])
 
   useEffect(() => {
     if (!searchName) return;
-    // setPage(1);
-    // setImg([]);
     setIsLoading(true);
     console.log("isLoading", isLoading);
 
@@ -46,15 +46,11 @@ function App() {
       try {
         const getImg = await axios.get(API);
 
-        // await new Promise(resolve => setTimeout(resolve, 2000))
-
         if (page === 1) {
           setImg(getImg.data.hits);
         } else {
-            setImg((prev) => [...prev, ...getImg.data.hits]);
+          setImg((prev) => [...prev, ...getImg.data.hits]);
         }
-
-        // console.log("img", getImg.data.hits);
       } catch (e) {
         console.log(e);
       } finally {
@@ -63,22 +59,10 @@ function App() {
     };
 
     apiGet();
-  }, [searchName, page]);
+  }, [API, searchName, page]);
 
   const addPage = async () => {
     setPage((prev) => prev + 1);
-    // setIsLoading(true);
-    // console.log("isLoading", isLoading);
-    // try {
-    //   const getImages = await axios.get(API);
-    //   // setTimeout(() => {
-    //   setImg((prev) => [...prev, ...getImages.data.hits]);
-    //   // }, 2000);
-    // } catch (e) {
-    //   console.log(e);
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   return (

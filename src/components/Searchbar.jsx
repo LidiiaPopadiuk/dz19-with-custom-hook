@@ -11,6 +11,8 @@ export const Searchbar = ({ onSubmit }) => {
         if (!inputValue) return
 
         onSubmit(inputValue)
+
+        e.target.elements.searchName.value = ''
     }
 
     return (
