@@ -1,6 +1,5 @@
 import "./styles.css";
 import "./App.css";
-import { useState, useEffect, useMemo, useCallback } from "react";
 import { Searchbar } from "./components/Searchbar";
 import { Modal } from "./components/Modal";
 import { ImageGallery } from "./components/ImageGallery";
